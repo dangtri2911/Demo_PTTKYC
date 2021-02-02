@@ -1,0 +1,120 @@
+body {
+    background-color: #ffffff;
+    background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
+}
+
+.bg_left_lg {
+    height: 100vh;
+    padding: 0;
+    display: block;
+    float: left;
+    filter: grayscale(30%);
+}
+
+.login_form_contain {
+    display: block;
+    float: left;
+    position: relative;
+    height: 100vh;
+}
+
+.login_form {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    background-color: white;
+    padding: 20px 40px;
+    border: 0.5px solid hsl(204, 19%, 40%);
+    border-radius: 30px;
+}
+
+.login_form>h3 {
+    color: #607d8b;
+    font-weight: 600;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 4px solid hsl(220, 100%, 85%);
+    display: inline-block;
+    letter-spacing: 1px;
+}
+
+.login_form h5 {
+    color: #607d8b;
+    font-size: 1em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: inline-block;
+    letter-spacing: 1px;
+    text-align: center;
+    width: 100%;
+}
+
+.login_form>div label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: #607d8b;
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.login_form>div>input {
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid #607d8b;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #607d8b;
+    background: transparent;
+    border-radius: 30px;
+}
+
+.submit_btn>.submit {
+    background: hsl(199, 46%, 45%) !important;
+    color: white;
+    outline: none;
+    border: 1px solid hsl(200, 18%, 66%);
+}
+
+.submit_btn:hover>.submit {
+    background: hsl(199, 46%, 35%) !important;
+}
+
+.account_remain {
+    margin-top: 20px;
+    font-size: smaller;
+}
+
+.social_media_contain {
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-around;
+    list-style: none;
+    width: 80%;
+}
+
+.social_media_contain>.fab {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.social_media_contain>.fa-facebook-square {
+    color: hsl(225, 100%, 60%);
+}
+
+.social_media_contain>.fa-instagram {
+    color: hsl(300, 100%, 70%);
+}
+
+.social_media_contain>.fa-google {
+    color: hsl(100, 100%, 65%);
+}
+
+.social_media_contain>.fab:hover {
+    transform: scale(1.25);
+}

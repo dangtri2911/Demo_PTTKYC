@@ -1,0 +1,28 @@
+input:focus {
+    border: 1px solid black !important;
+}
+
+body {
+    background-size: cover;
+    overflow: hidden;
+}
+.login_form>div label{
+    font-weight: 500;
+}
+.login_form>h3{
+    font-size: 2em;
+    color: hsl(199, 50%, 30%);
+}
+.social_media_contain>.fab{
+font-size: 50px;
+}
+.login_form h5{
+    color: hsl(199, 50%, 30%);
+    font-size: 1.25em;
+    font-weight: 500;
+    margin-bottom: 20px;
+    display: inline-block;
+    letter-spacing: 1px;
+    text-align: center;
+    width: 100%;
+}
