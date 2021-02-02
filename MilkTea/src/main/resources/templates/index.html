@@ -91,6 +91,13 @@
                                         </span>
                                     </a>
                                 </li>
+                                <li class="login_btn">
+                                    <a href="/logout">
+                                        <span  sec:authorize="isAuthenticated()">
+                                            Log out
+                                        </span>
+                                    </a>
+                                </li>
                             </ul>
                         </nav>
                     </div>
