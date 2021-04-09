@@ -1,11 +1,11 @@
 package PTTKYC.MilkTea.Service.UserService;
 
-import PTTKYC.MilkTea.Entity.User;
+import PTTKYC.MilkTea.Entity.TaiKhoan;
 
 import java.util.Optional;
 
 public interface UserService {
-    void save(User user);
-    void changeUserPassword(User user, String password);
-    Optional<User> findByUsername(String username);
+    void save(TaiKhoan taiKhoan);
+    void changeUserPassword(TaiKhoan taiKhoan, String password);
+    Optional< TaiKhoan > findByUsername(String username);
 }

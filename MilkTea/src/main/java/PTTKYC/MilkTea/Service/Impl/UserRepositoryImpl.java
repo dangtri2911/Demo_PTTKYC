@@ -1,7 +1,7 @@
 package PTTKYC.MilkTea.Service.Impl;
 
-import PTTKYC.MilkTea.Entity.User;
-import PTTKYC.MilkTea.Repository.UserRepository;
+import PTTKYC.MilkTea.Entity.TaiKhoan;
+import PTTKYC.MilkTea.Repository.TaiKhoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +10,11 @@ import java.util.Optional;
 @Service
 public class UserRepositoryImpl {
     @Autowired
-    UserRepository userRepository;
+    TaiKhoanRepository taiKhoanRepository;
 
-    Optional< User > findByUserName(String userName){
-        Optional<User> val = Optional.empty();
-        for(User i:userRepository.findAll()){
+    Optional< TaiKhoan > findByUserName(String userName){
+        Optional< TaiKhoan > val = Optional.empty();
+        for(TaiKhoan i: taiKhoanRepository.findAll()){
             if(i.getUsername().equals(userName)){
                 val = Optional.of(i);
                 return val;

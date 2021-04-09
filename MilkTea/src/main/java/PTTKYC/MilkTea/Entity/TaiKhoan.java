@@ -1,30 +1,33 @@
 package PTTKYC.MilkTea.Entity;
 
-import com.sun.istack.NotNull;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "User")
-public class User implements UserDetails {
+@Table(name = "TaiKhoan")
+public class TaiKhoan implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
+    @Column(name = "ID")
+    private int ID;
 
     private String client_Name;
 
     private String username;
 
     private String password;
+
+    @OneToOne(mappedBy = "taiKhoan")
+    private NhanVien nhanVien;
+
+    @OneToOne(mappedBy = "taiKhoan")
+    private KhachHang khachHang;
 
     @Override
     public Collection< ? extends GrantedAuthority > getAuthorities() {
@@ -64,11 +67,11 @@ public class User implements UserDetails {
     }
 
 
-    public User(String userName, String password){
+    public TaiKhoan(String userName, String password){
         this.username = userName;
         this.password = password;
     }
-    public User(){
+    public TaiKhoan(){
         super();
     }
     public void setPassword(String password) {
@@ -89,8 +92,8 @@ public class User implements UserDetails {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
+        return "TaiKhoan{" +
+                "id=" + ID +
                 ", client_Name='" + client_Name + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

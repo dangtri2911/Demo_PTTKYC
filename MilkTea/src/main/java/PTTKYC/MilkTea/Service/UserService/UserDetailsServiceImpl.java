@@ -1,7 +1,7 @@
 package PTTKYC.MilkTea.Service.UserService;
 
-import PTTKYC.MilkTea.Entity.User;
-import PTTKYC.MilkTea.Repository.UserRepository;
+import PTTKYC.MilkTea.Entity.TaiKhoan;
+import PTTKYC.MilkTea.Repository.TaiKhoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -14,17 +14,17 @@ import java.util.List;
 
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
-    private UserRepository userRepository;
+    private TaiKhoanRepository taiKhoanRepository;
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-      for(User i:userRepository.findAll()){
+      for(TaiKhoan i: taiKhoanRepository.findAll()){
           if(i.getUsername() == s){
               return i;
           }
       }
         List< GrantedAuthority > authorities = AuthorityUtils.createAuthorityList( "ROLE_USER" );
 
-        return  new User("demo","123456");
+        return  new TaiKhoan("demo","123456");
     }
 }
