@@ -14,6 +14,8 @@ public class KhoNVL {
     @OneToOne(mappedBy = "khoNVL")
     private ThuKho thuKho;
 
+    @OneToMany(mappedBy = "")
+
     public int getId() {
         return id;
     }
