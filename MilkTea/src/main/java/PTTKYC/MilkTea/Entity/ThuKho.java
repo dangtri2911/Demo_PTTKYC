@@ -1,10 +1,25 @@
 package PTTKYC.MilkTea.Entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "ThuKho")
 public class ThuKho extends NhanVien implements PTTKYC.MilkTea.model.Interface.ThuKho {
+    public ThuKho(Long ID, String CMND, String hoten, Date ngaySinh, String gioitinh, KhoNVL khoNVL) {
+        super(ID, CMND, hoten, ngaySinh, gioitinh);
+        this.khoNVL = khoNVL;
+    }
+
+    public ThuKho(KhoNVL khoNVL) {
+        this.khoNVL = khoNVL;
+    }
+
+    public ThuKho(Long ID, String CMND, String hoten, Date ngaySinh, String gioitinh) {
+        super(ID, CMND, hoten, ngaySinh, gioitinh);
+    }
+    public ThuKho() {
+    }
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "kho_ID",referencedColumnName = "ID")

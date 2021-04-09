@@ -14,6 +14,19 @@ public class CuaHang {
     @OneToOne(mappedBy = "cuaHang")
     private QuanLyCuaHang quanLyCuaHang;
 
+    public CuaHang(int ID, String diaChi, QuanLyCuaHang quanLyCuaHang) {
+        this.ID = ID;
+        this.diaChi = diaChi;
+        this.quanLyCuaHang = quanLyCuaHang;
+    }
+
+    public CuaHang(int ID, String diaChi) {
+        this.ID = ID;
+        this.diaChi = diaChi;
+    }
+
+    public CuaHang(){}
+
     public int getID() {
         return ID;
     }

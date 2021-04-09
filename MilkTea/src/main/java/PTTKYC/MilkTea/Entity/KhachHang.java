@@ -19,6 +19,16 @@ public class KhachHang implements PTTKYC.MilkTea.model.Interface.KhachHang {
     @JoinColumn(name = "tk_ID",referencedColumnName = "ID")
     private TaiKhoan taiKhoan;
 
+    public KhachHang(int ID, String CMND, String hoten, Date ngaySinh, String gioitinh) {
+        this.ID = ID;
+        this.CMND = CMND;
+        this.hoten = hoten;
+        this.ngaySinh = ngaySinh;
+        this.gioitinh = gioitinh;
+    }
+
+    public KhachHang(){}
+
     @Override
     public void xemMenu() {
 

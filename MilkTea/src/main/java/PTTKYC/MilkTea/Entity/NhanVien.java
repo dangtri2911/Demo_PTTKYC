@@ -1,10 +1,12 @@
 package PTTKYC.MilkTea.Entity;
 
+import PTTKYC.MilkTea.Entity.Product.Luong;
 import PTTKYC.MilkTea.model.Interface.Person;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "NhanVien")
@@ -13,18 +15,21 @@ public class NhanVien implements PTTKYC.MilkTea.model.Interface.NhanVien, Person
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int ID;
+    private Long ID;
 
     private String CMND;
     private String hoten;
     private Date ngaySinh;
     private String gioitinh;
 
-    public int getID() {
+    @OneToMany(mappedBy = "nhanVien")
+    private List< Luong > luong = new ArrayList<Luong>();
+
+    public Long getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 
@@ -67,6 +72,17 @@ public class NhanVien implements PTTKYC.MilkTea.model.Interface.NhanVien, Person
     @Override
     public void doiMatKhau() {
 
+    }
+
+    public NhanVien(Long ID, String CMND, String hoten, Date ngaySinh, String gioitinh) {
+        this.ID = ID;
+        this.CMND = CMND;
+        this.hoten = hoten;
+        this.ngaySinh = ngaySinh;
+        this.gioitinh = gioitinh;
+    }
+
+    public NhanVien() {
     }
 
     @Override

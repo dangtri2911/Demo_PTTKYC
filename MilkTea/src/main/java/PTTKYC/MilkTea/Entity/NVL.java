@@ -24,6 +24,15 @@ public class NVL {
     @ManyToMany
     private List< DonDatNVL > donDatNVL = new ArrayList<DonDatNVL>();
 
+    public NVL(int ID, String tenNVL, int soluong, String mota) {
+        this.ID = ID;
+        this.tenNVL = tenNVL;
+        this.soluong = soluong;
+        this.mota = mota;
+    }
+
+    public NVL(){}
+
     public int getID() {
         return ID;
     }

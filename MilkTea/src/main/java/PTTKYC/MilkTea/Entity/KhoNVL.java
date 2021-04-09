@@ -1,6 +1,8 @@
 package PTTKYC.MilkTea.Entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "KhoNVL")
@@ -14,7 +16,21 @@ public class KhoNVL {
     @OneToOne(mappedBy = "khoNVL")
     private ThuKho thuKho;
 
-    @OneToMany(mappedBy = "")
+    @OneToMany(mappedBy = "khoNVL")
+    private List< NVL > nvl = new ArrayList<NVL>();
+
+    public KhoNVL(int id, String diaChi) {
+        this.id = id;
+        this.diaChi = diaChi;
+    }
+
+    public KhoNVL(int id, String diaChi, ThuKho thuKho) {
+        this.id = id;
+        this.diaChi = diaChi;
+        this.thuKho = thuKho;
+    }
+
+    public KhoNVL(){}
 
     public int getId() {
         return id;

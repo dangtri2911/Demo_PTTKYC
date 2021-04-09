@@ -1,7 +1,6 @@
 package PTTKYC.MilkTea.Entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 
@@ -9,6 +8,12 @@ import java.util.Date;
 @Table(name = "NhanVienBanHang")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class NhanVienBanHang extends NhanVien implements PTTKYC.MilkTea.model.Interface.NhanVienBanHang {
+    public NhanVienBanHang(Long ID, String CMND, String hoten, Date ngaySinh, String gioitinh) {
+        super(ID, CMND, hoten, ngaySinh, gioitinh);
+    }
+
+    public NhanVienBanHang() {
+    }
 
     @Override
     public void capNhatTinhTrangSanPham() {

@@ -1,6 +1,5 @@
 package PTTKYC.MilkTea.Entity.Product;
 
-import PTTKYC.MilkTea.Entity.Food;
 import PTTKYC.MilkTea.Entity.NVL;
 
 import javax.persistence.*;
@@ -20,4 +19,11 @@ public class DonDatNVL {
     @ManyToMany
     private List< NVL > nvl = new ArrayList<NVL>();
 
+    public DonDatNVL(int ID, Date ngayDat, List< NVL > nvl) {
+        this.ID = ID;
+        this.ngayDat = ngayDat;
+        this.nvl = nvl;
+    }
+
+    public DonDatNVL(){}
 }
