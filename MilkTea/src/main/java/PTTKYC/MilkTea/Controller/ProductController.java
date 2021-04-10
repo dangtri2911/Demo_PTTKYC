@@ -1,26 +1,19 @@
 package PTTKYC.MilkTea.Controller;
 
 import PTTKYC.MilkTea.Repository.SanPhamRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ProductController {
+    @Autowired
     private final SanPhamRepository sanPhamRepository;
 
     public ProductController(SanPhamRepository sanPhamRepository) {
         this.sanPhamRepository = sanPhamRepository;
     }
 
-    @GetMapping("/")
-    public String indexPage(){
-        return "index";
-    }
-
-    @GetMapping("/login")
-    public String loginPage(){
-        return "login";
-    }
 
     /*
     @GetMapping("/demo")

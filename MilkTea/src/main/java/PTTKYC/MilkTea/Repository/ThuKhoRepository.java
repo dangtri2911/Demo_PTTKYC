@@ -1,6 +1,6 @@
 package PTTKYC.MilkTea.Repository;
 
-import PTTKYC.MilkTea.model.Interface.ThuKho;
+import PTTKYC.MilkTea.Entity.ThuKho;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
