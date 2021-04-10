@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "MenuRepository")
+@Table(name = "Menu")
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

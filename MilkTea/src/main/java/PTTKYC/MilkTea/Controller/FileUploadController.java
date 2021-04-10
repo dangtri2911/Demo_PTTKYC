@@ -3,6 +3,7 @@ package PTTKYC.MilkTea.Controller;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
+import PTTKYC.MilkTea.Storage.StorageFileNotFoundException;
 import PTTKYC.MilkTea.Storage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -30,6 +31,19 @@ public class FileUploadController {
         this.storageService = storageService;
     }
 
+    @GetMapping("/files/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+
+        Resource file = storageService.loadAsResource(filename);
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+    }
+
+    @ExceptionHandler(StorageFileNotFoundException.class)
+    public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
+        return ResponseEntity.notFound().build();
+    }
 /*
 	@GetMapping("/")
 	public String listUploadedFiles(Model model) throws IOException {
@@ -43,14 +57,7 @@ public class FileUploadController {
 	}
 */
 /*
-	@GetMapping("/files/{filename:.+}")
-	@ResponseBody
-	public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 
-		Resource file = storageService.loadAsResource(filename);
-		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-				"attachment; filename=\"" + file.getFilename() + "\"").body(file);
-	}
 
 	@PostMapping("/files")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file,
@@ -61,9 +68,6 @@ public class FileUploadController {
 	}
 
 
-	@ExceptionHandler(StorageFileNotFoundException.class)
-	public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
-		return ResponseEntity.notFound().build();
-	}
+
 */
 }

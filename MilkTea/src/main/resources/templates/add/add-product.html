@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Thêm sản phẩm</title>
+    <link rel="shortcut icon" type="image/png" href="/images/logo.jpg">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="/css/add-product.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+
+
+</head>
+
+<body>
+    <div class="contact1">
+        <form class="container-contact1" method="POST" th:action="*{action}" enctype="multipart/form-data">
+            <button class="back_btn"><i class="fas fa-arrow-left"></i></button>
+            <div class="contact1-pic js-tilt" data-tilt>
+                <div>
+                    <input type='file' name="hinh" id="imgInp" />
+                    <img id="blah" src="#" alt="Please choose image" />
+                </div>
+            </div>
+
+            <div class="contact1-form validate-form">
+                    <span class="contact1-form-title">
+                        THÔNG TIN SẢN PHẨM
+                    </span>
+
+                <div class="wrap-input1 validate-input" data-validate = "Name is required">
+                    <input class="input1" type="text" name="name" placeholder="Tên sản phẩm">
+                    <span class="shadow-input1"></span>
+                </div>
+
+                <div class="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                    <input class="input1" type="number" name="price" placeholder="Giá">
+                    <span class="shadow-input1"></span>
+                </div>
+                <div>
+                    <label class="tinhtrang">Tình trạng:</label>
+                    <label class="switch">
+                        <input id="testName" name="" type="checkbox" onclick="switch_()" checked>
+                        <span class="slider round"></span>
+                        <input id='testNameHidden' type='hidden' name='tinhtrang' value="on">
+                    </label>
+                </div>
+                <div class="wrap-input1 validate-input" data-validate = "Message is required">
+                    <textarea class="input1" name="mota" placeholder="Mô tả"></textarea>
+                    <span class="shadow-input1"></span>
+                </div>
+
+                <div class="container-contact1-form-btn">
+                    <input type="submit" class="contact1-form-btn">
+                            <span>
+                                Thêm món
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+                    </input>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+            function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                $('#blah').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+            }
+
+            $("#imgInp").change(function() {
+                readURL(this);
+            });
+            function switch_(){
+                if(document.getElementById("testName").checked) {
+                    document.getElementById('testNameHidden').value = 'on';
+                }else{
+                    document.getElementById('testNameHidden').value = 'off';
+                }
+            }
+
+        </script>
+</body>

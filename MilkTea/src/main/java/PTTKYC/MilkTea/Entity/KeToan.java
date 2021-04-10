@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "KeToanRepository")
+@Table(name = "KeToan")
 public class KeToan extends NhanVien implements PTTKYC.MilkTea.model.Interface.KeToan {
 
     @OneToMany(mappedBy = "keToan")
