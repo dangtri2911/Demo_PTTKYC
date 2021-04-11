@@ -1,6 +1,7 @@
 package PTTKYC.MilkTea.Config;
 
 
+import PTTKYC.MilkTea.Repository.TaiKhoanRepository;
 import PTTKYC.MilkTea.Service.Facebook.FacebookSignInAdapter;
 import PTTKYC.MilkTea.Service.FacebookService.FacebookConnectionSignup;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
     @Autowired
     private FacebookConnectionSignup facebookConnectionSignup;
+    @Autowired
+    private TaiKhoanRepository taiKhoanRepository;
+
 
     @Value("${spring.social.facebook.appSecret}")
     String appSecret;

@@ -24,7 +24,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
           }
       }
         List< GrantedAuthority > authorities = AuthorityUtils.createAuthorityList( "ROLE_USER" );
-
         return  new TaiKhoan("demo","123456");
     }
 }

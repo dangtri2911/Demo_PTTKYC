@@ -30,4 +30,15 @@ public class RouterController {
         model.addAttribute("product",sanPhamRepository.findById(id).get());
         return "item_single";
     }
+
+    @GetMapping("/product/page/{number}")
+    public String viewPageProduct(Model model){
+        model.addAttribute("products",sanPhamRepository.findAllByOrderByIDDesc());
+        return "listings";
+    }
+    @GetMapping("/Menu")
+    public String viewMenu(Model model){
+        model.addAttribute("products",sanPhamRepository.findAllByOrderByIDDesc());
+        return "Menu";
+    }
 }

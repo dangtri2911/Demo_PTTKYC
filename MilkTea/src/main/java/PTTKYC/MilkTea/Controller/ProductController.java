@@ -7,9 +7,7 @@ import PTTKYC.MilkTea.Storage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,7 +57,15 @@ public class ProductController {
         sp.setMenu(menuRepository.findById(1).get());
         sanPhamRepository.save(sp);
 
-        resp.sendRedirect("/product/"+ sp.getID());
+        resp.sendRedirect("/product/page/1");
+        return "index";
+    }
+
+    @GetMapping("/delete/product/{id}")
+    public String deleteProduct(@PathVariable("id") int id,
+                                HttpServletResponse response) throws IOException {
+        sanPhamRepository.deleteById(id);
+        response.sendRedirect("/product/page/1");
         return "index";
     }
     /*

@@ -24,18 +24,6 @@ public class SignUpController{
     @Autowired
     private TaiKhoanRepository taiKhoanRepository;
 
-    @GetMapping("/test/{username}/{password}")
-    public String test(Model model,
-                       @PathVariable("username") String username,
-                       @PathVariable("password") String password,
-                       HttpServletResponse response) throws IOException {
-        TaiKhoan taiKhoan = new TaiKhoan(username,password);
-        taiKhoan.getAuthorities();
-        userService.save(taiKhoan);
-        response.sendRedirect("/login");
-        return "login";
-    }
-
     @GetMapping("/signup")
     public String signup_page(){
         return "signup";
@@ -59,8 +47,10 @@ public class SignUpController{
         model.addAttribute("signup_success",true);
         return "login";
     }
+    /*
     @GetMapping("/demoFB")
     public String demoFB(){
         return "demofb";
     }
+     */
 }

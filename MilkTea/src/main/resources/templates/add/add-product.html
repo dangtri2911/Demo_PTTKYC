@@ -16,7 +16,9 @@
 <body>
     <div class="contact1">
         <form class="container-contact1" method="POST" th:action="*{action}" enctype="multipart/form-data">
-            <button class="back_btn"><i class="fas fa-arrow-left"></i></button>
+            <button  type="button" class="back_btn" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
             <div class="contact1-pic js-tilt" data-tilt>
                 <div>
                     <input type='file' name="hinh" id="imgInp" />
@@ -88,5 +90,10 @@
                 }
             }
 
+        </script>
+        <script>
+            function goBack() {
+              window.history.back();
+            }
         </script>
 </body>

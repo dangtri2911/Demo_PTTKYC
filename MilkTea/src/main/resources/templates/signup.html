@@ -59,13 +59,14 @@
             <div>
                 <h5> Login with social Media</h5>
                 <div class="social_media_contain">
-                    <i class="fab fa-facebook-square"><a href="#"></a></i>
+                    <a onclick="document.getElementById('my_fb_form').submit();" href="#" class="fab fa-facebook-square"></a>
                     <i class="fab fa-instagram"></i>
                     <i class="fab fa-google"></i>
                 </div>
             </div>
         </div>
     </form>
+<form style="display:none" id="my_fb_form" method="POST" th:action="@{/signin/facebook}"></form>
 </body>
 
 </html>
