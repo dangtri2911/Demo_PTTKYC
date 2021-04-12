@@ -65,9 +65,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
 
         auth.inMemoryAuthentication()
-                .withUser("admin").password(bCryptPasswordEncoder().encode("123456")).authorities("ADMIN","USER")
+                .withUser("admin").password(bCryptPasswordEncoder().encode("123456")).authorities("ADMIN")
                 .and()
-                .withUser("dangtri").password(bCryptPasswordEncoder().encode("123456")).authorities("ADMIN");
+                .withUser("dangtri").password(bCryptPasswordEncoder().encode("123456")).authorities("USER");
     }
 
 
@@ -77,6 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasAnyAuthority("ADMIN","MANAGER")
+                .antMatchers("/user/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
                     .formLogin()

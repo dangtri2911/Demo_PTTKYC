@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface SanPhamRepository extends PagingAndSortingRepository< SanPham,Integer >{
     List<SanPham> findAllByOrderByIDDesc();
+    List<SanPham> findAllByTinhTrangOrderByIDDesc(int tinhTrang);
 }

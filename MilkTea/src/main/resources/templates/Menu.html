@@ -55,28 +55,47 @@
                     <nav class="site-navigation position-relative text-right" role="navigation">
 
                         <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                            <li class="active"><a href="index.html"><span>Home</span></a></li>
-                            <li class="has-children">
-                                <a href="about.html"><span>Food</span></a>
+                            <li><a href="/"><span>Trang chủ</span></a></li>
+                            <li class="has-children" sec:authorize="isAuthenticated() and hasAnyAuthority('ADMIN','MANAGER','NHANVIEN')">
+                                <a href="/" ><span>Quản lý</span></a>
                                 <ul class="dropdown arrow-top">
-                                    <li><a href="#">Noodle</a></li>
-                                    <li><a href="#">Burger</a></li>
-                                    <li><a href="#">Tempura</a></li>
-                                    <li class="has-children">
-                                        <a href="#">Drink</a>
+                                    <li sec:authorize="hasAnyAuthority('ADMIN')"><a href="#">Tài khoản</a></li>
+                                    <li sec:authorize="hasAnyAuthority('ADMIN','NHANVIENBANHANG')"><a href="#">Đơn hàng</a></li>
+                                    <li sec:authorize="hasAnyAuthority('ADMIN','THUKHO')"><a href="#">NVL</a></li>
+                                    <li class="has-children" sec:authorize="hasAnyAuthority('ADMIN')">
+                                        <a href="/admin/manage/product">Sản phẩm</a>
                                         <ul class="dropdown">
-                                            <li><a href="#">Tea</a></li>
-                                            <li><a href="#">Milk</a></li>
-                                            <li><a href="#">Coffee</a></li>
-                                            <li><a href="#">Trà sữa :))</a></li>
+                                            <li><a href="/admin/add-entity/add-product">Thêm sản phẩm</a></li>
+                                            <li><a href="/admin/manage/product">Chỉnh sửa sản phẩm</a></li>
+                                            <li><a href="/admin/manage/product">Xóa sản phẩm</a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="listings.html"><span>Order</span></a></li>
-                            <li><a href="about.html"><span>Menu</span></a></li>
-                            <li><a href="blog.html"><span>Apply</span></a></li>
-                            <li><a href="contact.html"><span>About</span></a></li>
+
+                            <li class="active"><a href="/Menu"><span>Menu</span></a></li>
+                            <li><a href="/user"><span>Đặt đơn</span></a></li>
+                            <li><a href="/"  sec:authorize="isAuthenticated()"><span>Đơn hàng của bạn</span></a></li>
+                            <li><a href="/" sec:authorize="isAuthenticated()"><span>Tài khoản</span></a></li>
+                            <li class="login_btn">
+                                <a sec:authorize="isAnonymous()" href="/login">
+                                    <span>Login</span>
+                                </a>
+                            </li>
+                            <li class="login_btn">
+                                <a href="#">
+                                        <span  sec:authorize="isAuthenticated()">
+                                            <div sec:authentication="name"></div>
+                                        </span>
+                                </a>
+                            </li>
+                            <li class="login_btn">
+                                <a href="/logout">
+                                        <span  sec:authorize="isAuthenticated()">
+                                            Log out
+                                        </span>
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -88,9 +107,7 @@
 
         </div>
 
-
     </header>
-
 </div>
 
 <div class="site-blocks-cover overlay site_blocks_cover_single" style="background-image: url('images/bg_4.jpg');opacity:1;" data-aos="fade" data-stellar-background-ratio="0.5">
@@ -190,7 +207,7 @@
 </div>
 
 
-<div class="py-5 bg-primary">
+    <div class="py-5 bg-primary">
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 mr-auto mb-4 mb-lg-0">
@@ -198,73 +215,52 @@
                     <p class="mb-0 text-white"></p>
                 </div>
                 <div class="col-lg-4">
-                    <p class="mb-0"><a href="signup.html" class="btn btn-outline-white text-white btn-md px-5 font-weight-bold btn-md-block">Sign Up</a></p>
+                    <p class="mb-0"><a href="/signup" class="btn btn-outline-white text-white btn-md px-5 font-weight-bold btn-md-block">Đăng ký</a></p>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="site-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="row">
-                        <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                            <h2 class="footer-heading mb-4">Quick Links</h2>
-                            <ul class="list-unstyled">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Testimonials</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                            <h2 class="footer-heading mb-4">Products</h2>
-                            <ul class="list-unstyled">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Testimonials</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                            <h2 class="footer-heading mb-4">Features</h2>
-                            <ul class="list-unstyled">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Testimonials</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                            <h2 class="footer-heading mb-4">Follow Us</h2>
-                            <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-                            <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-                            <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-                            <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-                        </div>
+<section class="site-footer">
+    <div class="container">
+        <div class="row mb-30">
+            <div class="col-md-6">
+                <div class="footer-card footer-card-l">
+                    <div class="footer-logo">
+                        <img src="https://trasuabumba.com/public/images/logo-footer.png" class="img-responsive" alt="Logo footer">
                     </div>
-                </div>
-                <div class="col-lg-3">
-                    <h2 class="footer-heading mb-4">Subscribe Newsletter</h2>
-                    <p>Đăng ký Email để theo dõi và nhận các thông báo mới nhất  .</p>
-                    <form action="#" method="post">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control bg-transparent" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary text-white" type="button" id="button-addon2">Send</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="row pt-5 mt-5">
-                <div class="col-12 text-md-center text-left">
+                    <div class="site-card mb-30">
+                        <p>Với châm ngôn tuyệt đối không sử dụng nguyên liệu không rõ nguồn gốc, xuất xứ, trà sữa Bumba tự hào mang lại cho khách hàng những sản phẩm, chất lượng tốt nhất</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
 
+                </div>
+            </div><!-- /.col 3-->
+            <div class="col-md-6 col-sm-6 ">
+                <div class="site-card footer-card footer-card-r">
+                    <h3>Liên hệ</h3>
+                    <p class="fw-600">Công ty CP-TM-DV Chào Ngày Mới</p>
+                    <p>Tầng 3 - Tòa nhà Green Bee - 684/28A Trần Hưng Đạo, Phường 2, Quận 5, TP. Hồ Chí Minh</p>
+
+                    <p>Email: bumba.om@trasuabumba.com</p>
+                    <p>Hotline: 0975 277 017</p>
+                </div>
+            </div><!-- /.col-3-->
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="site-card footer-card text-center">
+                    <p>Copyright © 2020 Bumba.
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
     </div>
 
     <script src="js/jquery-3.3.1.min.js"></script>

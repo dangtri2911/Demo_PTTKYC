@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html >
 <html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -57,28 +57,28 @@
                         <nav class="site-navigation position-relative text-right" role="navigation">
 
                             <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                                <li class="active"><a href="index.html"><span>Home</span></a></li>
-                                <li class="has-children">
-                                    <a href="about.html"><span>Food</span></a>
-                                    <ul class="dropdown arrow-top">
-                                        <li><a href="#">Noodle</a></li>
-                                        <li><a href="#">Burger</a></li>
-                                        <li><a href="#">Tempura</a></li>
-                                        <li class="has-children">
-                                            <a href="#">Drink</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Tea</a></li>
-                                                <li><a href="#">Milk</a></li>
-                                                <li><a href="#">Coffee</a></li>
-                                                <li><a href="#">Trà sữa :))</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                <li class="active"><a href="/"><span>Trang chủ</span></a></li>
+                                <li class="has-children" sec:authorize="isAuthenticated() and hasAnyAuthority('ADMIN','MANAGER','NHANVIEN')">
+                                        <a href="/" ><span>Quản lý</span></a>
+                                        <ul class="dropdown arrow-top">
+                                            <li sec:authorize="hasAnyAuthority('ADMIN')"><a href="#">Tài khoản</a></li>
+                                            <li sec:authorize="hasAnyAuthority('ADMIN','NHANVIENBANHANG')"><a href="#">Đơn hàng</a></li>
+                                            <li sec:authorize="hasAnyAuthority('ADMIN','THUKHO')"><a href="#">NVL</a></li>
+                                            <li class="has-children" sec:authorize="hasAnyAuthority('ADMIN')">
+                                                <a href="/admin/manage/product">Sản phẩm</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="/admin/add-entity/add-product">Thêm sản phẩm</a></li>
+                                                    <li><a href="/admin/manage/product">Chỉnh sửa sản phẩm</a></li>
+                                                    <li><a href="/admin/manage/product">Xóa sản phẩm</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
                                 </li>
-                                <li><a href="listings.html"><span>Order</span></a></li>
-                                <li><a href="about.html"><span>Menu</span></a></li>
-                                <li><a href="blog.html"><span>Apply</span></a></li>
-                                <li><a href="contact.html"><span>About</span></a></li>
+
+                                <li><a href="/Menu"><span>Menu</span></a></li>
+                                <li><a href="/user"><span>Đặt đơn</span></a></li>
+                                <li><a href="/"  sec:authorize="isAuthenticated()"><span>Đơn hàng của bạn</span></a></li>
+                                <li><a href="/" sec:authorize="isAuthenticated()"><span>Tài khoản</span></a></li>
                                 <li class="login_btn">
                                     <a sec:authorize="isAnonymous()" href="/login">
                                         <span>Login</span>
@@ -115,13 +115,10 @@
 
 
 
-    <div class="site-blocks-cover overlay" style="background-image: url(images/bg_3.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="site-blocks-cover overlay" style="background-image: url(images/bg_13.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
         <div class="container">
             <div class="row align-items-center justify-content-center text-center">
-
                 <div class="col-md-10">
-
-
                     <div class="row justify-content-center mb-4">
                         <div class="col-md-10 text-center">
                             <h1 data-aos="fade-up">You want to <span class="typed-words"></span></h1>
@@ -181,101 +178,28 @@
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-md-7 text-center border-primary">
-                    <h2 class="font-weight-light text-primary">Most Ordered</h2>
-                    <p class="color-black-opacity-5">Tổng hợp những món trong top bets selling của quán trong tháng vừa qua</p>
+                    <h2 class="font-weight-light text-primary">Best seller</h2>
+                    <p class="color-black-opacity-5">Tổng hợp những món trong top bets selling của cửa hàng trong tháng vừa qua</p>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
+                <div th:each="product:${products}" class="col-md-6 mb-4 mb-lg-4 col-lg-4">
 
                     <div class="listing-item">
                         <div class="listing-image">
-                            <img src="images/img_1.png" alt="Free Website Template by Free-Template.co" class="img-fluid">
+                            <img th:src="${product.getLinkIMG()}" alt="" class="img-fluid">
                         </div>
                         <div class="listing-item-content">
-                            <a href="item_single.html" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
-                            <a class="px-3 mb-3 category" href="#">Trà</a>
-                            <h2 class="mb-1"><a href="item_single.html">Trà Cúc Lê</a></h2>
-                            <span class="address">55.000 đ</span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
-
-                    <div class="listing-item">
-                        <div class="listing-image">
-                            <img src="images/img_2.png" alt="Free Website Template by Free-Template.co" class="img-fluid">
-                        </div>
-                        <div class="listing-item-content">
-                            <a href="item_single.html" class="bookmark"><span class="icon-heart"></span></a>
-                            <a class="px-3 mb-3 category" href="#">Sữa chua</a>
-                            <h2 class="mb-1"><a href="item_single.html">Sữa chua Phúc Bồn Tử Đác Cam</a></h2>
-                            <span class="address">65.000 đ</span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
-
-                    <div class="listing-item">
-                        <div class="listing-image">
-                            <img src="images/img_3.png" alt="Free Website Template by Free-Template.co" class="img-fluid">
-                        </div>
-                        <div class="listing-item-content">
-                            <a href="item_single.html" class="bookmark"><span class="icon-heart"></span></a>
-                            <a class="px-3 mb-3 category" href="#">Sữa chua</a>
-                            <h2 class="mb-1"><a href="item_single.html">Sữa chua Xoài Đác Cam</a></h2>
-                            <span class="address">65.000 đ</span>
+                            <a class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
+                            <a class="px-3 mb-3 category" href="/" >Bumba</a>
+                            <h2 class="mb-1"><a th:href="@{/product/{id}(id=${product.getID()})}" href="item_single.html" th:text="${product.getTenSanPham()}">Trà Cúc Lê</a></h2>
+                            <span class="address"><span th:text="${product.getGia()}" class="price_display"></span></span>
                         </div>
                     </div>
 
                 </div>
 
-                <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
-
-                    <div class="listing-item">
-                        <div class="listing-image">
-                            <img src="images/img_4.png" alt="Free Website Template by Free-Template.co" class="img-fluid">
-                        </div>
-                        <div class="listing-item-content">
-                            <a href="item_single.html" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
-                            <a class="px-3 mb-3 category" href="#">Trà</a>
-                            <h2 class="mb-1"><a href="item_single.html">Trà Lài ủ lạnh</a></h2>
-                            <span class="address">30.000 đ</span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
-
-                    <div class="listing-item">
-                        <div class="listing-image">
-                            <img src="images/img_5.png" alt="Free Website Template by Free-Template.co" class="img-fluid">
-                        </div>
-                        <div class="listing-item-content">
-                            <a href="item_single.html" class="bookmark"><span class="icon-heart"></span></a>
-                            <a class="px-3 mb-3 category" href="#">Trà sữa</a>
-                            <h2 class="mb-1"><a href="item_single.html">Trà sữa truyền thống</a></h2>
-                            <span class="address">40.000 đ</span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
-
-                    <div class="listing-item">
-                        <div class="listing-image">
-                            <img src="images/img_6.png" alt="Free Website Template by Free-Template.co" class="img-fluid">
-                        </div>
-                        <div class="listing-item-content">
-                            <a href="item_single.html" class="bookmark"><span class="icon-heart"></span></a>
-                            <a class="px-3 mb-3 category" href="#">Cocktail</a>
-                            <h2 class="mb-1"><a href="item_single.html">Cocktail Special</a></h2>
-                            <span class="address">52.000 đ</span>
-                        </div>
-                    </div>
 
                 </div>
             </div>
@@ -348,7 +272,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 mb-5">
-                    <img src="images/nv_1.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid rounded">
+                    <img src="images/nv_1.jpg" alt="__" class="img-fluid rounded">
                 </div>
                 <div class="col-md-5 ml-auto">
                     <h2 class="text-primary mb-3">Why Us</h2>
@@ -446,183 +370,97 @@
         </div>
     </div>
 
-    <div class="site-section bg-light">
+    <div class="site-section" data-aos="fade">
         <div class="container">
-
             <div class="row justify-content-center mb-5">
                 <div class="col-md-7 text-center border-primary">
-                    <h2 class="font-weight-light text-primary">Customer's review</h2>
+                    <h2 class="font-weight-light text-primary">Các sản phẩm khác của Bumba</h2>
+                    <p class="color-black-opacity-5">Các sản phẩm đa dạng và ngon miêng đến từ bumba</p>
                 </div>
             </div>
 
-            <div class="slide-one-item home-slider owl-carousel">
-                <div>
-                    <div class="testimonial">
-                        <figure class="mb-4">
-                            <img src="images/person_3_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3">
-                            <p>Willie Smith</p>
-                        </figure>
-                        <blockquote>
-                            <p>Comment 1</p>
-                        </blockquote>
+            <div class="row">
+                <div th:each="product:${others}" class="col-md-6 mb-4 mb-lg-4 col-lg-4">
+
+                    <div class="listing-item">
+                        <div class="listing-image">
+                            <img th:src="${product.getLinkIMG()}" alt="" class="img-fluid">
+                        </div>
+                        <div class="listing-item-content">
+                            <a class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
+                            <a class="px-3 mb-3 category" href="/" >Bumba</a>
+                            <h2 class="mb-1"><a th:href="@{/product/{id}(id=${product.getID()})}" href="item_single.html" th:text="${product.getTenSanPham()}">Trà Cúc Lê</a></h2>
+                            <span class="address"><span th:text="${product.getGia()}" class="price_display"></span></span>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <div class="testimonial">
-                        <figure class="mb-4">
-                            <img src="images/person_2_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3">
-                            <p>Robert Jones</p>
-                        </figure>
-                        <blockquote>
-                            <p>Comment 2</p>
-                        </blockquote>
-                    </div>
+
                 </div>
 
-                <div>
-                    <div class="testimonial">
-                        <figure class="mb-4">
-                            <img src="images/person_4_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3">
-                            <p>Peter Richmond</p>
-                        </figure>
-                        <blockquote>
-                            <p>Comment 3</p>
-                        </blockquote>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="testimonial">
-                        <figure class="mb-4">
-                            <img src="images/person_5_sq.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid mb-3">
-                            <p>Bruce Rogers</p>
-                        </figure>
-                        <blockquote>
-                            <p>Comment 4</p>
-                        </blockquote>
-                    </div>
-                </div>
 
             </div>
         </div>
     </div>
-
-
-
-    <div class="site-section">
-        <div class="container">
-            <div class="row justify-content-center mb-5">
-                <div class="col-md-7 text-center border-primary">
-                    <h2 class="font-weight-light text-primary">Voucher &amp; sale off</h2>
-                    <p class="color-black-opacity-5">Get notifications when we have Voucher and sale off for you</p>
-                </div>
-            </div>
-            <div class="row mb-3 align-items-stretch">
-                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-                    <div class="h-entry">
-                        <img src="images/vc_1.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
-                        <div class="h-entry-inner">
-                            <h2 class="font-size-regular"><a href="#">Voucher 1 </a></h2>
-                            <div class="meta mb-4"> <a href="#">Điều kiện nhận</a> <span class="mx-2">&bullet;</span> May 5th, 2019</div>
-                            <p> Description: bla bla bla .................................................... </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-                    <div class="h-entry">
-                        <img src="images/vc_2.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
-                        <div class="h-entry-inner">
-                            <h2 class="font-size-regular"><a href="#">Voucher 2</a></h2>
-                            <div class="meta mb-4"> <a href="#">Điều kiện nhận</a> <span class="mx-2">&bullet;</span> May 5th, 2019</div>
-                            <p> Description: bla bla bla .................................................... </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-                    <div class="h-entry">
-                        <img src="images/vc_3.png" alt="Free Website Template by Free-Template.co" class="img-fluid">
-                        <div class="h-entry-inner">
-                            <h2 class="font-size-regular"><a href="#">Voucher 3</a></h2>
-                            <div class="meta mb-4"><a href="#">Điều kiện nhận</a> <span class="mx-2">&bullet;</span> May 5th, 2019</div>
-                            <p> Description: bla bla bla .................................................... </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
+
+
+
+
 
 
     <div class="py-5 bg-primary">
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 mr-auto mb-4 mb-lg-0">
-                    <h2 class="mb-3 mt-0 text-white">Let's get started. Create your account</h2>
-                    <p class="mb-0 text-white">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <h2 class="mb-3 mt-0 text-white">Đăng ký tài khoản để nhận thêm nhiều khuyến mãi hấp dẫn</h2>
+                    <p class="mb-0 text-white"></p>
                 </div>
                 <div class="col-lg-4">
-                    <p class="mb-0"><a href="signup.html" class="btn btn-outline-white text-white btn-md px-5 font-weight-bold btn-md-block">Sign Up</a></p>
+                    <p class="mb-0"><a href="/signup" class="btn btn-outline-white text-white btn-md px-5 font-weight-bold btn-md-block">Đăng ký</a></p>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="site-footer">
+    <section class="site-footer">
         <div class="container">
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="row">
-                        <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                            <h2 class="footer-heading mb-4">Quick Links</h2>
-                            <ul class="list-unstyled">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Testimonials</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                            </ul>
+            <div class="row mb-30">
+                <div class="col-md-6">
+                    <div class="footer-card footer-card-l">
+                        <div class="footer-logo">
+                            <img src="https://trasuabumba.com/public/images/logo-footer.png" class="img-responsive" alt="Logo footer">
                         </div>
-                        <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                            <h2 class="footer-heading mb-4">Products</h2>
-                            <ul class="list-unstyled">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Testimonials</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                            </ul>
+                        <div class="site-card mb-30">
+                            <p>Với châm ngôn tuyệt đối không sử dụng nguyên liệu không rõ nguồn gốc, xuất xứ, trà sữa Bumba tự hào mang lại cho khách hàng những sản phẩm, chất lượng tốt nhất</p>
                         </div>
-                        <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                            <h2 class="footer-heading mb-4">Features</h2>
-                            <ul class="list-unstyled">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Testimonials</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                            </ul>
+                        <div class="footer-social">
+                            <a href="" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="" target="_blank"><i class="fab fa-youtube"></i></a>
                         </div>
-                        <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                            <h2 class="footer-heading mb-4">Follow Us</h2>
-                            <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-                            <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-                            <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-                            <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-                        </div>
+
                     </div>
-                </div>
-                <div class="col-lg-3">
-                    <h2 class="footer-heading mb-4">Subscribe Newsletter</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <form action="#" method="post">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control bg-transparent" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary text-white" type="button" id="button-addon2">Send</button>
-                            </div>
-                        </div>
-                    </form>
+                </div><!-- /.col 3-->
+                <div class="col-md-6 col-sm-6 ">
+                    <div class="site-card footer-card footer-card-r">
+                        <h3>Liên hệ</h3>
+                        <p class="fw-600">Công ty CP-TM-DV Chào Ngày Mới</p>
+                        <p>Tầng 3 - Tòa nhà Green Bee - 684/28A Trần Hưng Đạo, Phường 2, Quận 5, TP. Hồ Chí Minh</p>
+
+                        <p>Email: bumba.om@trasuabumba.com</p>
+                        <p>Hotline: 0975 277 017</p>
+                    </div>
+                </div><!-- /.col-3-->
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="site-card footer-card text-center">
+                        <p>Copyright © 2020 Bumba.
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
     </div>
 
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -653,6 +491,15 @@
     </script>
 
     <script src="js/main.js"></script>
+    <script>
+        let x = document.querySelectorAll(".price_display");
+        for (let i = 0, len = x.length; i < len; i++) {
+            let num = Number(x[i].innerHTML)
+                      .toLocaleString('en');
+            x[i].innerHTML = num;
+            x[i].classList.add("currSign");
+        }
+    </script>
 
 
 </body>

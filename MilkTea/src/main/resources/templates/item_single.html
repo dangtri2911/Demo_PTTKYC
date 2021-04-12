@@ -11,6 +11,10 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="fonts/icomoon/style.css">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -27,73 +31,92 @@
     <link rel="stylesheet" href="css/rangeslider.css">
 
     <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="css/slider.css">
 </head>
 
 <body>
 
-    <div class="site-wrap">
+<div class="site-wrap">
 
-        <div class="site-mobile-menu">
-            <div class="site-mobile-menu-header">
-                <div class="site-mobile-menu-close mt-3">
-                    <span class="icon-close2 js-menu-toggle"></span>
-                </div>
+    <div class="site-mobile-menu">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icon-close2 js-menu-toggle"></span>
             </div>
-            <div class="site-mobile-menu-body"></div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <header class="site-navbar" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-11 col-xl-2">
+                    <h1 class="mb-0 site-logo">
+                        <!-- LOGO HERE BABEEE-->
+                    </h1>
+                </div>
+                <div class="col-12 col-md-10 d-none d-xl-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li><a href="/"><span>Trang chủ</span></a></li>
+                            <li class="active"><span>Sản phẩm</span></li>
+                            <li class="has-children" sec:authorize="isAuthenticated() and hasAnyAuthority('ADMIN','MANAGER','NHANVIEN')">
+                                <a href="/" ><span>Quản lý</span></a>
+                                <ul class="dropdown arrow-top">
+                                    <li sec:authorize="hasAnyAuthority('ADMIN')"><a href="#">Tài khoản</a></li>
+                                    <li sec:authorize="hasAnyAuthority('ADMIN','NHANVIENBANHANG')"><a href="#">Đơn hàng</a></li>
+                                    <li sec:authorize="hasAnyAuthority('ADMIN','THUKHO')"><a href="#">NVL</a></li>
+                                    <li class="has-children" sec:authorize="hasAnyAuthority('ADMIN')">
+                                        <a href="/admin/manage/product">Sản phẩm</a>
+                                        <ul class="dropdown">
+                                            <li><a href="/admin/add-entity/add-product">Thêm sản phẩm</a></li>
+                                            <li><a href="/admin/manage/product">Chỉnh sửa sản phẩm</a></li>
+                                            <li><a href="/admin/manage/product">Xóa sản phẩm</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li><a href="/Menu"><span>Menu</span></a></li>
+                            <li><a href="/user"><span>Đặt đơn</span></a></li>
+                            <li><a href="/"  sec:authorize="isAuthenticated()"><span>Đơn hàng của bạn</span></a></li>
+                            <li><a href="/" sec:authorize="isAuthenticated()"><span>Tài khoản</span></a></li>
+                            <li class="login_btn">
+                                <a sec:authorize="isAnonymous()" href="/login">
+                                    <span>Login</span>
+                                </a>
+                            </li>
+                            <li class="login_btn">
+                                <a href="#">
+                                        <span  sec:authorize="isAuthenticated()">
+                                            <div sec:authentication="name"></div>
+                                        </span>
+                                </a>
+                            </li>
+                            <li class="login_btn">
+                                <a href="/logout">
+                                        <span  sec:authorize="isAuthenticated()">
+                                            Log out
+                                        </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+
+                <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+
+            </div>
+
         </div>
 
-        <header class="site-navbar" role="banner">
+    </header>
+</div>
 
-            <div class="container">
-                <div class="row align-items-center">
-
-                    <div class="col-11 col-xl-2">
-                        <h1 class="mb-0 site-logo">
-                            <!-- LOGO HERE BABEEE-->
-                        </h1>
-                    </div>
-                    <div class="col-12 col-md-10 d-none d-xl-block">
-                        <nav class="site-navigation position-relative text-right" role="navigation">
-
-                            <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                                <li class="active"><a href="index.html"><span>Home</span></a></li>
-                                <li class="has-children">
-                                    <a href="about.html"><span>Food</span></a>
-                                    <ul class="dropdown arrow-top">
-                                        <li><a href="#">Noodle</a></li>
-                                        <li><a href="#">Burger</a></li>
-                                        <li><a href="#">Tempura</a></li>
-                                        <li class="has-children">
-                                            <a href="#">Drink</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Tea</a></li>
-                                                <li><a href="#">Milk</a></li>
-                                                <li><a href="#">Coffee</a></li>
-                                                <li><a href="#">Trà sữa :))</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a href="listings.html"><span>Order</span></a></li>
-                                <li><a href="about.html"><span>Menu</span></a></li>
-                                <li><a href="blog.html"><span>Apply</span></a></li>
-                                <li><a href="contact.html"><span>About</span></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-
-
-                    <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
-
-                </div>
-
-            </div>
-
-
-        </header>
-
-    </div>
 
     <div class="site-blocks-cover overlay site_blocks_cover_single" style="background-image: url('images/bg_4.jpg');opacity:1;" data-aos="fade" data-stellar-background-ratio="0.5">
         <div class="container">
@@ -239,129 +262,6 @@
                         <p>Categories: <a href="#">Tea</a>, <a href="#">Peach</a> Tags: <a href="#">#Phuc Long</a>, <a href="#">#Viet Nam</a></p>
                     </div>
 
-
-                    <div class="pt-5">
-                        <h3 class="mb-5">6 Comments</h3>
-                        <ul class="comment-list">
-                            <li class="comment">
-                                <div class="vcard bio">
-                                    <img src="images/comment_vcard.jpg" alt="Image">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>Jean Doe</h3>
-                                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus,
-                                        nihil?
-                                    </p>
-                                    <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                            </li>
-
-                            <li class="comment">
-                                <div class="vcard bio">
-                                    <img src="images/comment_vcard.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>Jean Doe</h3>
-                                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus,
-                                        nihil?
-                                    </p>
-                                    <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-
-                                <ul class="children">
-                                    <li class="comment">
-                                        <div class="vcard bio">
-                                            <img src="images/comment_vcard.jpg" alt="Image placeholder">
-                                        </div>
-                                        <div class="comment-body">
-                                            <h3>Jean Doe</h3>
-                                            <div class="meta">January 9, 2018 at 2:21pm</div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus,
-                                                nihil?
-                                            </p>
-                                            <p><a href="#" class="reply">Reply</a></p>
-                                        </div>
-
-                                        <ul class="children">
-                                            <li class="comment">
-                                                <div class="vcard bio">
-                                                    <img src="images/comment_vcard.jpg" alt="Image placeholder">
-                                                </div>
-                                                <div class="comment-body">
-                                                    <h3>Jean Doe</h3>
-                                                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit
-                                                        necessitatibus, nihil?</p>
-                                                    <p><a href="#" class="reply">Reply</a></p>
-                                                </div>
-
-                                                <ul class="children">
-                                                    <li class="comment">
-                                                        <div class="vcard bio">
-                                                            <img src="images/comment_vcard.jpg" alt="Image placeholder">
-                                                        </div>
-                                                        <div class="comment-body">
-                                                            <h3>Jean Doe</h3>
-                                                            <div class="meta">January 9, 2018 at 2:21pm</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum
-                                                                impedit necessitatibus, nihil?</p>
-                                                            <p><a href="#" class="reply">Reply</a></p>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="comment">
-                                <div class="vcard bio">
-                                    <img src="images/comment_vcard.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>Jean Doe</h3>
-                                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus,
-                                        nihil?
-                                    </p>
-                                    <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                            </li>
-                        </ul>
-                        <!-- END comment-list -->
-
-                        <div class="comment-form-wrap pt-5">
-                            <h3 class="mb-5">Leave a comment</h3>
-                            <form action="#" class="p-5 bg-light">
-                                <div class="form-group">
-                                    <label for="name">Name *</label>
-                                    <input type="text" class="form-control" id="name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email *</label>
-                                    <input type="email" class="form-control" id="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="website">Website</label>
-                                    <input type="url" class="form-control" id="website">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="message">Message</label>
-                                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" value="Post Comment" class="btn btn-primary text-white btn-md">
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-
-
                 </div>
 
                 <div class="col-md-3 ml-auto">
@@ -369,33 +269,31 @@
                         <h3 class="h5 text-black mb-3">Search</h3>
                         <form action="#" method="post">
                             <div class="form-group d-flex">
-                                <input type="text" class="form-control" placeholder="Search keyword and hit enter...">
+                                <input type="text" class="form-control" placeholder="Nhập để tìm kiếm">
                             </div>
                         </form>
                     </div>
 
-                    <div class="mb-5">
-                        <h3 class="h5 text-black mb-3">Các món liên quan</h3>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><a href="#">Món 1</a></li>
-                            <li class="mb-2"><a href="#">Món 2</a></li>
-                            <li class="mb-2"><a href="#">Món 3</a></li>
-                            <li class="mb-2"><a href="#">Món 4</a></li>
-                        </ul>
-                    </div>
+                </div>
 
-                    <div class="mb-5">
-                        <h3 class="h5 text-black mb-3">Top reviewer:</h3>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><a href="#">Person 1: bla bla bla</a></li>
-                            <li class="mb-2"><a href="#">Person 2: bla bla bla bla</a></li>
-                            <li class="mb-2"><a href="#">Person 3: bla bla bla bla bla</a></li>
-                            <li class="mb-2"><a href="#">Person 4: bla bla bla bla bla bla</a></li>
-                        </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
+                <div class="MultiCarousel-inner">
+                    <div th:each="product: ${products}" class="item">
+                        <div class="pad15">
+                            <img th:src="${product.getLinkIMG()}">
+                            <a th:href="@{/product/{id}(id=${product.getID()})}" th:text="${product.getTenSanPham()}">Trà sữa bumba</a>
+                        </div>
                     </div>
 
                 </div>
-
+                <button class="btn btn-primary leftLst"><</button>
+                <button class="btn btn-primary rightLst">></button>
             </div>
         </div>
     </div>
@@ -405,76 +303,62 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 mr-auto mb-4 mb-lg-0">
-                    <h2 class="mb-3 mt-0 text-white">Let's get started. Create your account</h2>
-                    <p class="mb-0 text-white">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <h2 class="mb-3 mt-0 text-white">Đăng ký tài khoản để nhận thêm nhiều khuyến mãi hấp dẫn</h2>
+                    <p class="mb-0 text-white"></p>
                 </div>
                 <div class="col-lg-4">
-                    <p class="mb-0"><a href="signup.html" class="btn btn-outline-white text-white btn-md px-5 font-weight-bold btn-md-block">Sign Up</a></p>
+                    <p class="mb-0"><a href="/signup" class="btn btn-outline-white text-white btn-md px-5 font-weight-bold btn-md-block">Đăng ký</a></p>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="site-footer">
+
+
+    <section class="site-footer">
         <div class="container">
+            <div class="row mb-30">
+                <div class="col-md-6">
+                    <div class="footer-card footer-card-l">
+                        <div class="footer-logo">
+                            <img src="https://trasuabumba.com/public/images/logo-footer.png" class="img-responsive" alt="Logo footer">
+                        </div>
+                        <div class="site-card mb-30">
+                            <p>Với châm ngôn tuyệt đối không sử dụng nguyên liệu không rõ nguồn gốc, xuất xứ, trà sữa Bumba tự hào mang lại cho khách hàng những sản phẩm, chất lượng tốt nhất</p>
+                        </div>
+                        <div class="footer-social">
+                            <a href="" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="" target="_blank"><i class="fab fa-youtube"></i></a>
+                        </div>
+
+                    </div>
+                </div><!-- /.col 3-->
+                <div class="col-md-6 col-sm-6 ">
+                    <div class="site-card footer-card footer-card-r">
+                        <h3>Liên hệ</h3>
+                        <p class="fw-600">Công ty CP-TM-DV Chào Ngày Mới</p>
+                        <p>Tầng 3 - Tòa nhà Green Bee - 684/28A Trần Hưng Đạo, Phường 2, Quận 5, TP. Hồ Chí Minh</p>
+
+                        <p>Email: bumba.om@trasuabumba.com</p>
+                        <p>Hotline: 0975 277 017</p>
+                    </div>
+                </div><!-- /.col-3-->
+
+            </div>
             <div class="row">
-                <div class="col-md-9">
-                    <div class="row">
-                        <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                            <h2 class="footer-heading mb-4">Quick Links</h2>
-                            <ul class="list-unstyled">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Testimonials</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                            <h2 class="footer-heading mb-4">Products</h2>
-                            <ul class="list-unstyled">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Testimonials</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                            <h2 class="footer-heading mb-4">Features</h2>
-                            <ul class="list-unstyled">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Testimonials</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                            <h2 class="footer-heading mb-4">Follow Us</h2>
-                            <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-                            <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-                            <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-                            <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-                        </div>
+                <div class="col-md-12">
+                    <div class="site-card footer-card text-center">
+                        <p>Copyright © 2020 Bumba.
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <h2 class="footer-heading mb-4">Subscribe Newsletter</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <form action="#" method="post">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control bg-transparent" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary text-white" type="button" id="button-addon2">Send</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
-    </footer>
+    </section>
     </div>
 
 
-
+    <script src="js/slider.js"></script>
 </body>
 
 </html>

@@ -28,12 +28,12 @@ public class ProductController {
     }
 
    // @GetMapping("/admin/add-entity/add-product")
-    @GetMapping("/add-entity/add-product")
+    @GetMapping("/admin/add-entity/add-product")
     public String viewAddProduct(Model model){
-        model.addAttribute("action","/add-entity/add-product");
+        model.addAttribute("action","/admin/add-entity/add-product");
         return "add/add-product";
     }
-    @PostMapping("/add-entity/add-product")
+    @PostMapping("admin/add-entity/add-product")
     public String addProduct(@RequestParam("name") String ten,
                              @RequestParam("price") int gia,
                              @RequestParam("tinhtrang") String tinhtrang,
@@ -57,16 +57,41 @@ public class ProductController {
         sp.setMenu(menuRepository.findById(1).get());
         sanPhamRepository.save(sp);
 
-        resp.sendRedirect("/product/page/1");
+        resp.sendRedirect("/admin/manage/product/addStatus=true");
         return "index";
     }
 
-    @GetMapping("/delete/product/{id}")
+    @GetMapping("admin/delete/product/{id}")
     public String deleteProduct(@PathVariable("id") int id,
                                 HttpServletResponse response) throws IOException {
         sanPhamRepository.deleteById(id);
-        response.sendRedirect("/product/page/1");
+        response.sendRedirect("/admin/manage/product/deleteStatus=success");
         return "index";
+    }
+
+    @PostMapping("/admin/edit/product/{id}")
+    public String editPr(@RequestParam("name") String ten,
+                         @RequestParam("price") int gia,
+                         @RequestParam("tinhtrang") String tinhtrang,
+                         @RequestParam("mota") String mota,
+                         @PathVariable("id") int id,
+                         Model model,
+                         HttpServletRequest req,
+                         HttpServletResponse resp) throws IOException {
+        SanPham pr = sanPhamRepository.findById(id).get();
+        pr.setTenSanPham(ten);
+        pr.setGia(gia);
+        int tt = -1;
+        if(tinhtrang.equals("on"))
+            tt = 1;
+        else
+            tt = 0;
+        pr.setTinhTrang(tt);
+        pr.setMota(mota);
+        sanPhamRepository.save(pr);
+        resp.sendRedirect("/admin/manage/product/editStatus=true");
+
+        return "listings";
     }
     /*
     @GetMapping("/demo")
