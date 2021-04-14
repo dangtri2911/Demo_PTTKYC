@@ -5,7 +5,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,6 +25,26 @@ public class TaiKhoan implements UserDetails {
 
     private String password;
 
+    private boolean active = true;
+
+    private Date date_created = new Date();
+
+    public Date getDate_created() {
+        return date_created;
+    }
+
+    public void setDate_created(Date date_created) {
+        this.date_created = date_created;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @OneToOne(mappedBy = "taiKhoan")
     private NhanVien nhanVien;
 
@@ -39,6 +61,14 @@ public class TaiKhoan implements UserDetails {
     @Override
     public String getPassword() {
         return password;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     @Override
@@ -63,7 +93,7 @@ public class TaiKhoan implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return active;
     }
 
 

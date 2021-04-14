@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface TaiKhoanRepository extends PagingAndSortingRepository< TaiKhoan,Long > {
+public interface TaiKhoanRepository extends PagingAndSortingRepository< TaiKhoan, Integer > {
     Optional< TaiKhoan > findByusername(String userName);
 }

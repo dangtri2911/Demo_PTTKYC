@@ -2857,3 +2857,23 @@ input[type=number] {
 .col-lg-7 > .text-white{
     font-family: monospace;
 }
+
+.site-section .table_ table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+.site-section .table_  td,.site-section .table_ th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+.site-section .table_ th{
+      background-color: #00918e;
+      color: white;
+      text-transform: uppercase;
+  }
+.site-section .table_  tr:nth-child(even) {
+    background-color: #dddddd;
+  }

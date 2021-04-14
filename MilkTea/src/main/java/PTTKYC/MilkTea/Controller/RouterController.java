@@ -2,6 +2,7 @@ package PTTKYC.MilkTea.Controller;
 
 import PTTKYC.MilkTea.Entity.SanPham;
 import PTTKYC.MilkTea.Repository.SanPhamRepository;
+import PTTKYC.MilkTea.Repository.TaiKhoanRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,17 +11,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.http.HttpResponse;
 
 @Controller
 public class RouterController {
     private final SanPhamRepository sanPhamRepository;
+    private final TaiKhoanRepository taiKhoanRepository;
+
     @GetMapping("/access-denied")
     public String errorPage(Model model){
         return "error";
     }
-    public RouterController(SanPhamRepository sanPhamRepository) {
+    public RouterController(SanPhamRepository sanPhamRepository, TaiKhoanRepository taiKhoanRepository) {
         this.sanPhamRepository = sanPhamRepository;
+        this.taiKhoanRepository = taiKhoanRepository;
     }
 
     @GetMapping("/")
@@ -91,5 +94,10 @@ public class RouterController {
         model.addAttribute("info",true);
         model.addAttribute("products",sanPhamRepository.findAllByOrderByIDDesc());
         return "listings";
+    }
+    @GetMapping("/admin/manage/accounts")
+    public String viewAccount(Model model){
+        model.addAttribute("accounts",taiKhoanRepository.findAll());
+        return "manage_account";
     }
 }

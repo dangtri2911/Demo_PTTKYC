@@ -61,7 +61,7 @@
                                 <li class="has-children" sec:authorize="isAuthenticated() and hasAnyAuthority('ADMIN','MANAGER','NHANVIEN')">
                                         <a href="/" ><span>Quản lý</span></a>
                                         <ul class="dropdown arrow-top">
-                                            <li sec:authorize="hasAnyAuthority('ADMIN')"><a href="#">Tài khoản</a></li>
+                                            <li sec:authorize="hasAnyAuthority('ADMIN')"><a href="/admin/manage/accounts">Tài khoản</a></li>
                                             <li sec:authorize="hasAnyAuthority('ADMIN','NHANVIENBANHANG')"><a href="#">Đơn hàng</a></li>
                                             <li sec:authorize="hasAnyAuthority('ADMIN','THUKHO')"><a href="#">NVL</a></li>
                                             <li class="has-children" sec:authorize="hasAnyAuthority('ADMIN')">
@@ -325,7 +325,7 @@
             </div>
         </div>
     </div>
-
+<!--
     <div class="site-section">
         <div class="container">
             <div class="row justify-content-center mb-5">
@@ -369,7 +369,7 @@
             </div>
         </div>
     </div>
-
+-->
     <div class="site-section" data-aos="fade">
         <div class="container">
             <div class="row justify-content-center mb-5">
